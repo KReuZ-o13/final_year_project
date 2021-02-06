@@ -25,7 +25,7 @@ model.enableExternalScorer(lm_file_path)
 
 model.setScorerAlphaBeta(lm_alpha, lm_beta)
 model.setBeamWidth(beam_width)
- 
+ one_list = []
 
 #obtain input data
 def input_read(filename):
@@ -42,7 +42,9 @@ def input_read(filename):
 def transcribe_this (audio_file):
     buffer, rate = input_read(audio_file)
     data16 = np.frombuffer(buffer, dtype=np.int16)
-    text_file = model.stt(data16)
+    text_file = model.stt(data16)one_list.append(text_file)
+    with open('transcript.txt','w') as f:
+        f.write(json.dumps(one_list))
     print(text_file)
     return(text_file)
     
