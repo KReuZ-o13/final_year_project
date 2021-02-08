@@ -56,6 +56,7 @@ def segment_generator(frame_time, audio, rate):
         offset += n
         
 #Now let's use that function to get the frames!
+#How do I convert the Frame object into bytes? :confused:
 def the_true_segment_generator (filename):
     audio, rate, audio_duration = input_read(filename)
     frames = segment_generator(30, audio, rate)
