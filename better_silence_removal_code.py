@@ -1,9 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Sat Feb  6 15:50:54 2021
-
-@author: KReuZ_o13
-"""
 
 from pydub import AudioSegment as aS
 import numpy as np
