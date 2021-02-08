@@ -5,7 +5,7 @@ from pydub import AudioSegment as aS
 from scipy.io import wavfile
 import sys
 import os
-import IPython
+#import IPython
 #import wave
 import json
 from deepspeech import Model
@@ -34,6 +34,11 @@ def input_read(filename):
 #transcribe the audio and save it to one file
 #considering  changing this from wave to pydub and using a for loop for the segments
 #can I incorporate temp files?
+#new issue: Where is this file getting the word entertainment in all the audio files I run?
+#Or whatever that transcript is
+#segments considered a tuple even though it was an array 
+#Array conversion fail
+
 def transcribe_this (audio_file):
     rate, signal = input_read(audio_file)
     signal = signal / (2**15)
@@ -45,6 +50,7 @@ def transcribe_this (audio_file):
                      np.arange(0, signal_len, segment_size)])
     for i, segment in enumerate(segments):
         #wavfile.write(filename, rate, data)
+        #asarray and array bring up same issue
         a = np.asanyarray(segment)
         data16 = np.frombuffer(a, dtype=np.int16)
         text_file = model.stt(data16)
@@ -59,5 +65,7 @@ def transcribe_this (audio_file):
 #EOFE error. where is it popping up from....
 #All input reads are bringing up an EOFE error
 #Both wave and scipy
+#Issue resolved, the file had been corrupted
+
 input_file_1 = "D:/Project/test_audio.wav"
 transcribe_this(input_file_1)

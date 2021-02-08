@@ -22,14 +22,14 @@ def silence_remover (filename, file_type):
     
     #Segment the signal
     sig_len = len(mono_sig)
-    seg_t = 5
+    seg_t = 1
     seg_size = seg_t * fs 
     segments = np.array([signal[x:x + seg_size] for x in
                              np.arange(0, sig_len, seg_size)])
     
     #Find the energy of the signal to calculate its threshold and eliminate those below it
     energy = [(s**2).sum() / len(s) for s in segments]
-    thres = 0.5 * np.median(energy)
+    thres = 0.6 * np.median(energy)
     speech_seg_index = (np.where(energy > thres)[0])
     segments_2 = segments[speech_seg_index]
     new_signal = np.concatenate(segments_2)
