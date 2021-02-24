@@ -20,7 +20,7 @@ model.enableExternalScorer(lm_file_path)
 
 model.setScorerAlphaBeta(lm_alpha, lm_beta)
 model.setBeamWidth(beam_width)
- one_list = []
+one_list = []
 
 #obtain input data
 def input_read(filename):
