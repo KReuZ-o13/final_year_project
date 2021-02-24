@@ -122,7 +122,7 @@ def vad_collects_all(rate, frame_duration_ms, padding_duration_ms, vad, frames):
     if voiced_frames:
         yield b''.join([f.bytes for f in voiced_frames])
 
-#The true segment generator, lol
+#The true segment generator
 
 def the_true_segment_generator(filename, aggressiveness):
     audio, rate, audio_length = input_read(filename)
